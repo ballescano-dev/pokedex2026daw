@@ -5,6 +5,7 @@ const img_src_base = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/s
 window.addEventListener('load', async () => {
   const pokemon_list = await pokeapi.getAllPokemons();
   fillButtonTypes();
+  showCurrentPokemon(1);
 
   const input_search = document.getElementById('pokemon-search');
   input_search.removeAttribute('disabled');
@@ -16,7 +17,12 @@ window.addEventListener('load', async () => {
     result_search_container.classList.add('d-none');
     result_search_container.innerHTML = '';
   };
-  form.onsubmit = ($event) => { searchPokemon($event) };
+  form.onsubmit = async ($event) => {
+    $event.preventDefault();
+    const pokemon = await pokeapi.getPokemonById(input_search.value);
+    input_search.value = '';
+    showCurrentPokemon(pokemon);
+  };
   input_search.addEventListener('input', () => { fillResultSearchContainer(input_search, result_search_container, pokemon_list) });
   for (const result of result_search_container.children) {
     result.addEventListener('click', () => { searchPokemon($event) });
@@ -70,6 +76,7 @@ async function fillButtonTypes() {
   button.classList.add('btn', 'filter', 'active');
   button.textContent = 'ALL';
   div_filters.append(button);
+
   for (const type of types.results) {
     if (type.name.toLowerCase() === 'unknown') continue;
     const button = document.createElement('button');
@@ -78,11 +85,24 @@ async function fillButtonTypes() {
     button.textContent = type.name.toUpperCase();
     div_filters.append(button);
   }
-  div_filters.classList.remove('spinner-border');
 }
 
-async function searchPokemon($event) {
-  $event.preventDefault();
-  // TODO: BUSCAR POKEMON
-  const pokemon = await pokeapi.getPokemonById();
+async function showCurrentPokemon(pokemon=null) {
+  const pokemon_row = document.getElementsByClassName('catalog-grid')[0].children;
+  const pokemon_display = document.getElementsByClassName('current-pokemon-pattern')[0];
+  
+  let current_pokemon_name;
+  if (pokemon !== null) {
+    current_pokemon_name = pokemon.name;
+    await fillPokemonDisplay(pokemon_display, current_pokemon_name);
+    return;
+  }
+
+  // for (const div of pokemon_row) {
+  //   div.onclick = async () => {
+  //     if (pokemon === null) current_pokemon_name = div.children[2].innerHTML;
+  //     pokemon_display.innerHTML = '<div class="spinner-border"></div>';
+  //     await fillPokemonDisplay(pokemon_display, current_pokemon_name);
+  //   }
+  // }
 }
