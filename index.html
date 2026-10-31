@@ -12,7 +12,7 @@
   </head>
   <body>
     <header>
-      <div class="container-fluid primary-bg">
+      <div id="header" class="container-fluid primary-bg">
         <div class="row align-items-center">
           <div class="logo-container col-8 col-lg-4 d-flex align-items-center">
             <img src="./img/logo.png" alt="Logo Pokedex" class="img-fluid">
@@ -52,7 +52,25 @@
       </div>
     </header>
 
-    <main></main>
+    <main>
+      <div class="container-fluid main-bg">
+        <div id="main-header" class="row align-items-center g-3">
+          <div id="form-search" class="col-12 col-lg-6">
+            <form action="#" method="get" class="input-group align-items-center">
+              <button type="submit" id="search-button" class="btn">
+                <i class="bi bi-search"></i>
+              </button>
+              <div id="input-container-search-pokemon" class="form-floating">
+                <input type="text" name="pokemon-search" id="pokemon-search" class="form-control" placeholder="Buscar pokémon (por nombre o N.º)...">
+                <label for="pokemon-search">Buscar pokémon (por nombre o N.º)...</label>
+              </div>
+              <input type="reset" id="reset-button" class="btn" value="RESET"></input>
+              <div id="result-search-container" class="d-none"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
     
     <footer>
       <script type="module" src="./script.js"></script>
