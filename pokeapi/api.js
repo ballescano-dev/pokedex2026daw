@@ -38,11 +38,11 @@ async function getPokemonById(pokemonId) {
   return {};
 }
 
-async function getPokemonTypes(pokemonId) {
-  let response = await fetch(`${fullEndpoint.pokemon}${pokemonId}`);
+async function getPokemonTypes() {
+  let response = await fetch(fullEndpoint.type);
   if (response.ok) {
     let data = await response.json();
-    return data.types;
+    return data;
   }
   return [];
 }

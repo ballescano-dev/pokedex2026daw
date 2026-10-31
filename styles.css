@@ -23,6 +23,15 @@ body {
   font-size: 0.75rem;
 }
 
+.btn:active {
+  transform: scale(0.9);
+  transition: 0.1s;
+}
+
+.btn:focus {
+  transition: 0.1s;
+}
+
 .primary-bg {
   background-color: var(--pokedex-red);
 }
@@ -66,7 +75,7 @@ body {
 }
 
 .navbar-nav .nav-link:hover,
-.navbar-nav .nav-link:focus-visible {
+.navbar-nav .nav-link:focus {
   background-color: #95172c;
 }
 
@@ -144,7 +153,7 @@ body {
   font-size: 0.85rem;
   cursor: pointer;
   background-color: #353535;
-  border-bottom: 1px solid #292929;
+  border-bottom: 1px solid #ffffff1a;
 }
 
 .result-item:last-child {
@@ -182,7 +191,60 @@ body {
 }
 
 #reset-button:hover,
-#reset-button:focus-visible {
+#reset-button:focus {
   color: white;
   background: #393939;
+}
+
+.filter {
+  padding: 0.35rem 0.5rem;
+  color: white;
+  background: var(--surface);
+  border-radius: 0.15rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.filter:hover,
+.filter:focus {
+  color: white;
+  background: #343434;
+}
+
+.filter.active {
+  color: #d6ffe0;
+  background: #1e7e38;
+}
+
+.filter-grass { color: #8ce493; }
+.filter-fire { color: #ffb6b0; }
+.filter-water { color: #88d5ff; }
+.filter-electric { color: #ffe16b; }
+.filter-psychic { color: #f8a7d3; }
+
+.dexter-voice-btn {
+  background-color: var(--surface);
+  color: var(--text);
+}
+
+.dexter-voice-btn:hover,
+.dexter-voice-btn:focus {
+  background-color: var(--pokedex-red);
+}
+
+.voice-indicator {
+  color: var(--green);
+  animation: lightenEffect 2s ease-in-out infinite;
+}
+
+@keyframes lightenEffect {
+  0% {
+    color: var(--green);
+  }
+  50% {
+    color: #8fbd94;
+  }
+  100% {
+    color: #cfe2ff;
+  }
 }
