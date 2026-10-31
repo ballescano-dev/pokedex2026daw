@@ -102,6 +102,7 @@ body {
   border-radius: 0.2rem;
   font-size: 0.8rem;
   text-transform: uppercase;
+  cursor: progress;
 }
 
 #input-container-search-pokemon label {
@@ -117,8 +118,8 @@ body {
 #result-search-container {
   position: absolute;
   top: 100%;
-  left: 6%;
-  width: 85%;
+  left: 0;
+  width: 100%;
   margin-top: 4px;
   background-color: var(--surface, #1e1e1e);
   border: 1px solid #292929;
@@ -129,7 +130,8 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   text-transform: uppercase;
 }
- /* ocultar la barra de desplazamiento */
+
+/* ocultar la barra de desplazamiento */
 #result-search-container::-webkit-scrollbar {
   display: none;
 }
@@ -141,6 +143,7 @@ body {
   color: #fff;
   font-size: 0.85rem;
   cursor: pointer;
+  background-color: #353535;
   border-bottom: 1px solid #292929;
 }
 
