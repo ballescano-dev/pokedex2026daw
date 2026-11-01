@@ -219,6 +219,7 @@ body {
 .filter-water { color: #88d5ff; }
 .filter-electric { color: #ffe16b; }
 .filter-psychic { color: #f8a7d3; }
+.filter-poison { color: #f260ff; }
 
 .dexter-voice-btn {
   background-color: var(--surface);
@@ -310,12 +311,17 @@ body {
 
 .current-pokemon-pattern img {
   width: 20rem;
-  background-color: red;
 }
 
 .current-pokemon-name {
   text-transform: uppercase;
 }
+
+#header-current-pokemon {
+  margin: 0 1px;
+  border-bottom: 1px solid var(--screen-dark);
+}
+
 
 #footer-current-pokemon {
   display: flex;
@@ -476,12 +482,19 @@ body {
 
 .badge-type {
   padding: 0.3rem 0.6rem;
+  margin: 0 0.3rem;
   color: var(--screen-dark);
-  background-color: #f4c430;
   border-radius: 5px;
-  font-size: 0.7rem;
   font-weight: bold;
 }
+
+.bg-grass { background-color: #8ce493; }
+.bg-fire { background-color: #ffb6b0; }
+.bg-water { background-color: #88d5ff; }
+.bg-electric { background-color: #ffe16b; }
+.bg-psychic { background-color: #f8a7d3; }
+.bg-poison { background-color: #f260ff; }
+.bg-other { background-color: rgb(174, 174, 174); }
 
 .pokemon-box {
   background-color: var(--surface);

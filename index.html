@@ -201,11 +201,10 @@
                   <div class="container main-bg">
                     <div id="current-pokemon-data" class="row justify-content-between align-items-center">
                       <div id="current-pokemon-name-id" class="col-6">
-                        <span id="current-pokemon-id" class="current-pokemon-id">1</span>
-                        <span class="current-pokemon-name">bul</span>
+                        <span id="current-pokemon-id" class="current-pokemon-id"></span>
+                        <span class="current-pokemon-name"></span>
                       </div>
-                      <div id="badges-type" class="col-6 text-end">
-                        <span class="badge-type">ELEC</span>
+                      <div id="badge-type-container" class="col-6 text-end">
                         <!-- pokemon type(s) -->
                       </div>
                     </div>
@@ -236,47 +235,47 @@
                       </div>
                     </div>
                     <div class="container-fluid">
-                      <div class="row">
+                      <div id="hp-row" class="row d-flex align-items-center justifiy-content-center">
                         <div class="col-2">
                           <span>PS (HP)</span>
                         </div>
-                        <div class="col-8">
-                          <progress class="stat-bar" min="0" max="100" value="50"></progress>
+                        <div class="col-9">
+                          <progress id="hp-bar" class="stat-bar" min="0" max="100"></progress>
                         </div>
-                        <div class="col-2">
+                        <div class="col-1 text-end">
                           <span class="progress-bar-value"></span>
                         </div>
                       </div>
-                      <div class="row">
+                      <div id="attack-row" class="row d-flex align-items-center justifiy-content-center">
                         <div class="col-2">
                           <span>ATAQUE</span>
                         </div>
-                        <div class="col-8">
-                          <progress class="stat-bar" min="0" max="100" value="97"></progress>
+                        <div class="col-9">
+                          <progress id="attack-bar" class="stat-bar" min="0" max="100"></progress>
                         </div>
-                        <div class="col-2">
+                        <div class="col-1 text-end">
                           <span class="progress-bar-value"></span>
                         </div>
                       </div>
-                      <div class="row">
+                      <div id="defense-row" class="row d-flex align-items-center justifiy-content-center">
                         <div class="col-2">
                           <span>DEFENSA</span>
                         </div>
-                        <div class="col-8">
-                          <progress class="stat-bar" min="0" max="100" value="33"></progress>
+                        <div class="col-9">
+                          <progress id="defense-bar" class="stat-bar" min="0" max="100"></progress>
                         </div>
-                        <div class="col-2">
+                        <div class="col-1 text-end">
                           <span class="progress-bar-value"></span>
                         </div>
                       </div>
-                      <div class="row">
+                      <div id="speed-row" class="row d-flex align-items-center justifiy-content-center">
                         <div class="col-2">
                           <span>VELOCIDAD</span>
                         </div>
-                        <div class="col-8">
-                          <progress class="stat-bar" min="0" max="100" value="10"></progress>
+                        <div class="col-9">
+                          <progress id="speed-bar" class="stat-bar" min="0" max="100"></progress>
                         </div>
-                        <div class="col-2">
+                        <div class="col-1 text-end">
                           <span class="progress-bar-value"></span>
                         </div>
                       </div>

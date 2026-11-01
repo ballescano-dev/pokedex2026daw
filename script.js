@@ -121,24 +121,67 @@ async function fillButtonTypes() {
   }
 }
 
-async function showCurrentPokemon(pokemon=null) {
-  const pokemon_row = document.getElementById('catalog-grid').children;
-  const pokemon_display = document.getElementsByClassName('current-pokemon-pattern')[0];
-  
-  let current_pokemon_name;
-  if (pokemon !== null) {
-    current_pokemon_name = pokemon.name;
-    // await fillPokemonDisplay(pokemon_display, current_pokemon_name);
+async function showCurrentPokemon(pokemon_id=null) {
+  const pokemon_rows = document.getElementsByClassName('pokemon-list-item');
+  let current_pokemon = await pokeapi.getPokemonById(pokemon_id);
+
+  if (pokemon_id !== null) {
+    fillPokemonDisplay(current_pokemon);
     return;
   }
 
-  // for (const div of pokemon_row) {
-  //   div.onclick = async () => {
-  //     if (pokemon === null) current_pokemon_name = div.children[2].innerHTML;
-  //     pokemon_display.innerHTML = '<div class="spinner-border"></div>';
-  //     await fillPokemonDisplay(pokemon_display, current_pokemon_name);
-  //   }
-  // }
+  for (const div of pokemon_rows) {
+    div.onclick = () => {
+      fillPokemonDisplay(current_pokemon);
+    }
+  }
+}
+
+function fillPokemonDisplay(pokemon) {
+  // ID
+  const pokemon_ids = document.getElementsByClassName('current-pokemon-id');
+  for (const id of pokemon_ids) {
+    id.innerHTML = formatPokemonId(pokemon.id);
+  }
+
+  // NAME
+  const pokemon_names = document.getElementsByClassName('current-pokemon-name');
+  for (const name of pokemon_names) {
+    name.innerHTML = pokemon.name.toUpperCase();
+  }
+
+  // IMAGE
+  const pokemon_img = document.getElementsByClassName('current-pokemon-pattern')[0].getElementsByTagName('img')[0];
+  pokemon_img.src = `${img_src_base}${pokemon.id}.png`;
+  pokemon_img.alt = `${pokemon.name.substring(0,1).toUpperCase()}${pokemon.name.substring(1)} image`;
+
+  // TYPE(S)
+  const badges_container = document.getElementById('badge-type-container');
+  for (const type of pokemon.types) {
+    const badge_type = document.createElement('span');
+    if (type.type.name === 'grass' | type.type.name === 'fire' | type.type.name === 'water' | type.type.name === 'electric' | type.type.name === 'psychic' | type.type.name === 'poison') {
+      badge_type.classList.add('badge-type', `bg-${type.type.name}`);
+    } else {
+      badge_type.classList.add('badge-type', 'bg-other');
+    }
+    badge_type.innerHTML = type.type.name.toUpperCase();
+    badges_container.append(badge_type);
+  }
+
+  // STATS
+  const progress_bars = document.getElementsByTagName('progress');
+  for (const bar of progress_bars) {
+    const div = bar.parentNode.parentNode;
+    const progress_bar = div.children[1].children[0];
+    const stat_number = div.children[2];
+    const stat_txt = div.id.split('-')[0];
+    for (const stat of pokemon.stats) {
+      if (stat.stat.name === stat_txt) {
+        progress_bar.value = stat.base_stat;
+        stat_number.innerHTML = stat.base_stat;
+      }
+    }
+  }
 }
 
 function fillPokemonGrid(pokemon_list) {
