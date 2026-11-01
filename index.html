@@ -68,9 +68,9 @@
               <input type="reset" id="reset-button" class="btn" value="RESET"></input>
             </form>
           </div>
-          <div id="filters" class="col12 col-lg-5">
+          <div id="filters" class="col12 col-lg-5 d-flex align-items-center justifiy-content-center">
             <span>FILTRO:</span>
-            <div class="filter-controls d-flex flex-wrap align-items-center justifiy-content-center gap-1">
+            <div class="filter-controls d-flex flex-wrap gap-1">
               <!-- rellenar dinamicamente en el js -->
             </div>
           </div>
@@ -198,8 +198,98 @@
               </div>
               <div class="col-12 col-lg-6">
                 <div id="right-container" class="p-3">
+                  <div class="container main-bg">
+                    <div id="current-pokemon-data" class="row justify-content-between align-items-center">
+                      <div id="current-pokemon-name-id" class="col-6">
+                        <span id="current-pokemon-id" class="current-pokemon-id">1</span>
+                        <span class="current-pokemon-name">bul</span>
+                      </div>
+                      <div id="badges-type" class="col-6 text-end">
+                        <span class="badge-type">ELEC</span>
+                        <!-- pokemon type(s) -->
+                      </div>
+                    </div>
+                    <div id="current-pokemon-info" class="row row-cols-3 pokemon-box">
+                      <div class="col pokemon-label">ESPECIE</div>
+                      <div class="col pokemon-label">ALTURA</div>
+                      <div class="col pokemon-label">PESO</div>
+                      <div id="pokemon-specie" class="col pokemon-value">Pokémon Ratón</div>
+                      <div id="pokemon-height" class="col pokemon-value">0.4 m</div>
+                      <div id="pokemon-weight" class="col pokemon-value">6.0 kg</div>
+                    </div>
+                    <div id="pokedex-entry" class="row row-cols-2 pokemon-box">
+                      <div class="col-12">
+                        <p class="entry-heading">
+                          <i class="bi bi-database"></i> REGISTRO OFICIAL KANTO:
+                        </p>
+                      </div>
+                      <div class="col-12">
+                        <p>
+                          <q>
+                            <em>
+                              Cuando varios de estos POKÉMON se juntan, su
+                              electricidad puede acumularse y causar tormentas
+                              eléctricas con relámpagos.
+                            </em>
+                          </q>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-2">
+                          <span>PS (HP)</span>
+                        </div>
+                        <div class="col-8">
+                          <progress class="stat-bar" min="0" max="100" value="50"></progress>
+                        </div>
+                        <div class="col-2">
+                          <span class="progress-bar-value"></span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-2">
+                          <span>ATAQUE</span>
+                        </div>
+                        <div class="col-8">
+                          <progress class="stat-bar" min="0" max="100" value="97"></progress>
+                        </div>
+                        <div class="col-2">
+                          <span class="progress-bar-value"></span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-2">
+                          <span>DEFENSA</span>
+                        </div>
+                        <div class="col-8">
+                          <progress class="stat-bar" min="0" max="100" value="33"></progress>
+                        </div>
+                        <div class="col-2">
+                          <span class="progress-bar-value"></span>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-2">
+                          <span>VELOCIDAD</span>
+                        </div>
+                        <div class="col-8">
+                          <progress class="stat-bar" min="0" max="100" value="10"></progress>
+                        </div>
+                        <div class="col-2">
+                          <span class="progress-bar-value"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                   <div class="container">
-                    <div class="row">b</div>
+                    <div class="row">
+                      <div class="col">MATRIZ DE ACCESO DIRECTO NUMÉRICO</div>
+                      <div class="col text-end">
+                        <button type="button" class="btn rounded-letter">C</button>
+                        <button type="button" class="btn rounded-letter">E</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
