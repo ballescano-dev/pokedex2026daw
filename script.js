@@ -51,16 +51,14 @@ window.addEventListener('load', async () => {
 });
 
 function fillResultSearchContainer(input, result_container, pokemon_list) {
-  let cont = 0;
   input.value = input.value.trim().toLowerCase();
   result_container.innerHTML = '';
   result_container.classList.toggle('d-none');
   for (const pokemon of pokemon_list) {
     if (pokemon.name.toLowerCase().includes(input.value) || String(pokemon.id).includes(input.value)) {
-      cont++;
-
       const result_item = document.createElement('div');
       result_item.classList.add('result-item');
+      result_item.setAttribute('tabindex', '0');
 
       const span_pokemon_id = document.createElement('span');
       span_pokemon_id.id = 'result-pokemon-id';
@@ -84,7 +82,7 @@ function fillResultSearchContainer(input, result_container, pokemon_list) {
       }
       
       result_item.append(span_pokemon_id, span_pokemon_name, span_pokemon_type);
-      if (cont  < 10) result_container.append(result_item);
+      result_container.append(result_item);
     }
   }
 }
@@ -130,7 +128,7 @@ async function showCurrentPokemon(pokemon=null) {
   let current_pokemon_name;
   if (pokemon !== null) {
     current_pokemon_name = pokemon.name;
-    await fillPokemonDisplay(pokemon_display, current_pokemon_name);
+    // await fillPokemonDisplay(pokemon_display, current_pokemon_name);
     return;
   }
 
@@ -143,17 +141,18 @@ async function showCurrentPokemon(pokemon=null) {
   // }
 }
 
-async function fillPokemonGrid(pokemon_list) {
+function fillPokemonGrid(pokemon_list) {
   const grid = document.getElementById('catalog-grid');
   const total_pokemon_number = document.getElementById('total-pokemon-number');
   total_pokemon_number.innerHTML = pokemon_list.length;
   for (const pokemon of pokemon_list) {
     const div = document.createElement('div');
     div.classList.add('col', 'pokemon-list-item');
+    div.setAttribute('tabindex', '0');
 
     const img = document.createElement('img');
     img.src = `${img_src_base}${pokemon.id}.png`;
-    img.alt = `${pokemon.name} image`;
+    img.alt = `${pokemon.name.substring(0,1).toUpperCase()}${pokemon.name.substring(1)} image`;
     img.classList.add('img-fluid');
 
     const pokemon_id_span = document.createElement('span');
