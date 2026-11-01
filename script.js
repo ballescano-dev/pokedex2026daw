@@ -43,7 +43,7 @@ function fillResultSearchContainer(input, result_container, pokemon_list) {
 
       const span_pokemon_id = document.createElement('span');
       span_pokemon_id.id = 'result-pokemon-id';
-      span_pokemon_id.innerHTML = `#${pokemon.id.toString().padStart(3, '0')}`;
+      span_pokemon_id.innerHTML = `#${formatPokemonId(pokemon.id)}`;
 
       const span_pokemon_name = document.createElement('span');
       span_pokemon_name.id = 'result-pokemon-name';
@@ -66,6 +66,10 @@ function fillResultSearchContainer(input, result_container, pokemon_list) {
       if (cont  < 10) result_container.append(result_item);
     }
   }
+}
+
+function formatPokemonId(pokemon_id) {
+  return pokemon_id.toString().padStart(3, '0');
 }
 
 async function fillButtonTypes() {

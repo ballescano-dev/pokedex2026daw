@@ -265,8 +265,12 @@ body {
 }
 
 #left-container .container {
-  background-color: whitesmoke;
   border-radius: 5px;
+}
+
+#left-container .container:nth-child(1) {
+  background-color: whitesmoke;
+  margin-bottom: 30px;
 }
 
 .header-current-pokemon-display {
@@ -302,7 +306,7 @@ body {
   background-size: 6px 6px;
   border: 5px solid #d8d8d8;
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgb(0 0 0 / 25%);
+  box-shadow: inset 0 2px 5px rgb(0 0 0 / 25%);
   color: black;
 }
 
@@ -313,6 +317,145 @@ body {
 
 .current-pokemon-name {
   text-transform: uppercase;
+}
+
+#footer-current-pokemon {
+  display: flex;
+  align-items: center;
+  background-color: #83b783;
+  margin: 1px;
+  border-radius: 5px;
+  padding: 5px 0;
+}
+
+.graph-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+  gap: 4px;
+  height: 28px;
+  padding: 4px 6px;
+  border-radius: 3px;
+  width: fit-content;
+}
+
+.graph-effect {
+  width: 4px;
+  background-color: #1a3c26;
+  border-radius: 1px;
+}
+
+.graph-effect:nth-child(1) { height: 60%; }
+.graph-effect:nth-child(2) { height: 75%; }
+.graph-effect:nth-child(3) { height: 45%; }
+.graph-effect:nth-child(4) { height: 100%; }
+.graph-effect:nth-child(5) { height: 55%; }
+.graph-effect:nth-child(6) { height: 75%; }
+.graph-effect:nth-child(7) { height: 30%; }
+
+.footer-current-pokemon-display {
+  display: flex;
+  align-items: center;
+}
+
+.footer-current-pokemon-display .col i.bi-circle-fill {
+  color: #636363;
+}
+
+.border-effect-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  padding: 6px;
+  margin-top: 5px;
+  width: fit-content;
+}
+
+.border-effect {
+  width: 100%;
+  height: 4px;
+  background-color: #636363;
+  border-radius: 50px;
+}
+
+.btns-row {
+  padding-bottom: 50px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--surface);
+}
+
+.btns-row .col {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0;
+}
+
+.btns-row .col button {
+  width: 50%;
+  background-color: var(--screen-dark);
+  color: white;
+  text-transform: uppercase;
+}
+
+.div-rounded-pill {
+  width: 25%;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--surface);
+}
+
+.red-pill {
+  background-color: #8b0000;
+}
+
+.direction-pad {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* barras horizontal y vertical */
+.direction-pad div {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--surface);
+  width: 70%;
+  height: 2.5rem;
+  border-radius: 10px;
+  padding: 0 6px;
+}
+
+.up-down {
+  transform: rotate(90deg);
+  transform-origin: center center;
+}
+
+.left-right span,
+.up-down span {
+  cursor: pointer;
+  color: #686870;
+}
+
+.left-right span:hover,
+.up-down span:hover {
+  color: var(--text);
+}
+
+.left-right span:active,
+.up-down span:active {
+  transform: scale(0.7);
+}
+
+.up-down span:nth-child(2) {
+  color: #111111;
 }
 
 @keyframes lightenEffect {
