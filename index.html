@@ -193,21 +193,21 @@
                       <div class="col d-flex justify-content-center align-items-center">
                         <div class="direction-pad">
                           <div class="left-right">
-                            <span class="arrow arrow-left">
+                            <span id="arrow-left" class="arrow arrow-left">
                               <i class="bi bi-caret-left-fill"></i>
                             </span>
-                            <span class="arrow arrow-right">
+                            <span id="arrow-right" class="arrow arrow-right">
                               <i class="bi bi-caret-right-fill"></i>
                             </span>
                           </div>
                           <div class="up-down">
-                            <span class="arrow arrow-up">
+                            <span id="arrow-up" class="arrow arrow-up">
                               <i class="bi bi-caret-left-fill"></i>
                             </span>
-                            <span class="arrow arrow-up">
+                            <span class="arrow circle-filled">
                               <i class="bi bi-circle-fill"></i>
                             </span>
-                            <span class="arrow arrow-down">
+                            <span id="arrow-down" class="arrow arrow-down">
                               <i class="bi bi-caret-right-fill"></i>
                             </span>
                           </div>
@@ -233,9 +233,15 @@
                       <div class="col pokemon-label">ESPECIE</div>
                       <div class="col pokemon-label">ALTURA</div>
                       <div class="col pokemon-label">PESO</div>
-                      <div id="pokemon-specie" class="col pokemon-value">Pokémon Ratón</div>
-                      <div id="pokemon-height" class="col pokemon-value">0.4 m</div>
-                      <div id="pokemon-weight" class="col pokemon-value">6.0 kg</div>
+                      <div class="col pokemon-value">
+                        <span id="pokemon-specie"></span>
+                      </div>
+                      <div class="col pokemon-value">
+                        <span id="pokemon-height"></span> m
+                      </div>
+                      <div class="col pokemon-value">
+                        <span id="pokemon-weight"></span> kg
+                      </div>
                     </div>
                     <div id="pokedex-entry" class="row row-cols-2 pokemon-box">
                       <div class="col-12">
@@ -244,15 +250,7 @@
                         </p>
                       </div>
                       <div class="col-12">
-                        <p>
-                          <q>
-                            <em>
-                              Cuando varios de estos POKÉMON se juntan, su
-                              electricidad puede acumularse y causar tormentas
-                              eléctricas con relámpagos.
-                            </em>
-                          </q>
-                        </p>
+                        <p id="pokemon-description"></p>
                       </div>
                     </div>
                     <div class="container-fluid">
@@ -261,7 +259,7 @@
                           <span>PS (HP)</span>
                         </div>
                         <div class="col-9">
-                          <progress id="hp-bar" class="stat-bar" min="0" max="100"></progress>
+                          <progress id="hp-bar" class="stat-bar" min="0" max="255"></progress>
                         </div>
                         <div class="col-1 text-end">
                           <span class="progress-bar-value"></span>
@@ -272,7 +270,7 @@
                           <span>ATAQUE</span>
                         </div>
                         <div class="col-9">
-                          <progress id="attack-bar" class="stat-bar" min="0" max="100"></progress>
+                          <progress id="attack-bar" class="stat-bar" min="0" max="255"></progress>
                         </div>
                         <div class="col-1 text-end">
                           <span class="progress-bar-value"></span>
@@ -283,7 +281,7 @@
                           <span>DEFENSA</span>
                         </div>
                         <div class="col-9">
-                          <progress id="defense-bar" class="stat-bar" min="0" max="100"></progress>
+                          <progress id="defense-bar" class="stat-bar" min="0" max="255"></progress>
                         </div>
                         <div class="col-1 text-end">
                           <span class="progress-bar-value"></span>
@@ -294,7 +292,7 @@
                           <span>VELOCIDAD</span>
                         </div>
                         <div class="col-9">
-                          <progress id="speed-bar" class="stat-bar" min="0" max="100"></progress>
+                          <progress id="speed-bar" class="stat-bar" min="0" max="255"></progress>
                         </div>
                         <div class="col-1 text-end">
                           <span class="progress-bar-value"></span>

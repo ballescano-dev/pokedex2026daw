@@ -2,7 +2,8 @@ const endpointBase = 'https://pokeapi.co/api/v2/';
 const fullEndpoint = {
   'pokemon': `${endpointBase}pokemon/`,
   'type': `${endpointBase}type/`,
-  'ability': `${endpointBase}ability/`
+  'ability': `${endpointBase}ability/`,
+  'specie': `${endpointBase}pokemon-species/`
 };
 
 async function getAllPokemons() {
@@ -81,4 +82,37 @@ async function getPokemonAbility(pokemonId, abilityName) {
   return {};
 }
 
-export { getAllPokemons, getPokemonById, getPokemonsAbility, getPokemonType, getPokemonTypes, getPokemonAbility };
+// async function getPokemonDescription(pokemonId) {
+//   let pokemonResponse = await fetch(`${fullEndpoint.description}${pokemonId}`);
+//   if (pokemonResponse.ok) {
+//     let data = await pokemonResponse.json();
+//     for (const description of data.flavor_text_entries) {
+//       if (description.language.name === 'es') {
+//         return description.flavor_text;
+//       }
+//     }
+//   }
+// }
+
+async function getPokemonSpecie(pokemonId) {
+  let pokemonResponse = await fetch(`${fullEndpoint.specie}${pokemonId}`);
+  if (pokemonResponse.ok) {
+    let returnData = [];
+    let data = await pokemonResponse.json();
+    for (const description of data.flavor_text_entries) {
+      if (description.language.name === 'es') {
+        returnData.push(description.flavor_text);
+        break;
+      }
+    }
+    for (const genera of data.genera) {
+      if (genera.language.name === 'es') {
+        returnData.push(genera.genus);
+        break;
+      }
+    }
+    return returnData;
+  }
+}
+
+export { getAllPokemons, getPokemonById, getPokemonsAbility, getPokemonType, getPokemonTypes, getPokemonAbility, getPokemonSpecie };

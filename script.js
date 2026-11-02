@@ -8,6 +8,9 @@ window.addEventListener('load', async () => {
   showCurrentPokemon(1);
   const pokemon_list = await pokeapi.getAllPokemons();
   fillPokemonGrid(pokemon_list);
+  // quitar la "pagina de carga" cuando ya están todos los pokemon recogidos
+  const loadingPage = document.getElementById('loading-page');
+  loadingPage.classList.add('d-none');
 
   // FORM + INPUT_SEARCH
   const input_search = document.getElementById('pokemon-search');
@@ -142,7 +145,7 @@ async function showCurrentPokemon(pokemon_id) {
   fillPokemonDisplay(current_pokemon);
 }
 
-function fillPokemonDisplay(pokemon) {
+async function fillPokemonDisplay(pokemon) {
   // ID
   const pokemon_ids = document.getElementsByClassName('current-pokemon-id');
   for (const id of pokemon_ids) {
@@ -188,6 +191,15 @@ function fillPokemonDisplay(pokemon) {
       }
     }
   }
+  const response = await pokeapi.getPokemonSpecie(pokemon.id);
+  const description = document.getElementById('pokemon-description');
+  description.innerHTML = `"${response[0]}"`;
+  const weight = document.getElementById('pokemon-weight');
+  weight.innerHTML = pokemon.weight/10;
+  const height = document.getElementById('pokemon-height');
+  height.innerHTML = pokemon.height/10;
+  const specie = document.getElementById('pokemon-specie');
+  specie.innerHTML = response[1];
 
   // SELECT ITEM LIST
   for (const item of document.getElementsByClassName('pokemon-list-item')) {
@@ -251,9 +263,6 @@ function fillPokemonGrid(pokemon_list, type=null) {
     div.append(img, pokemon_id_span, pokemon_name_span, pokemon_types_div);
     grid.append(div);
   }
-
-  const loadingPage = document.getElementById('loading-page');
-  loadingPage.classList.add('d-none');
 }
 
 function fillStatusBar() {}
