@@ -205,6 +205,7 @@ function fillPokemonDisplay(pokemon) {
 
 // TODO: FILTRAR POR EL TIPO DE POKEMON. SI ES NULL, TODOS; SI NO, SOLO LOS POKEMON QUE COINCIDAN CON EL TIPO
 // LO MISMO HAY QUE HACER UNA FUNCIÓN NUEVA EN API.JS O DIRECTAMENTE CREAR UNA LISTA DE OBJETOS Y FILTRAR DE LOS 1351 
+// VACIAR POKEMON_LIST, RECORRER LOS TIPOS DE CADA POKEMON, COMPARAR CON EL PARAMETRO TYPE Y AÑADIR A POKEMON_LIST
 function fillPokemonGrid(pokemon_list, type=null) {
   const grid = document.getElementById('catalog-grid');
   const total_pokemon_number = document.getElementById('total-pokemon-number');
@@ -250,6 +251,9 @@ function fillPokemonGrid(pokemon_list, type=null) {
     div.append(img, pokemon_id_span, pokemon_name_span, pokemon_types_div);
     grid.append(div);
   }
+
+  const loadingPage = document.getElementById('loading-page');
+  loadingPage.classList.add('d-none');
 }
 
 function fillStatusBar() {}

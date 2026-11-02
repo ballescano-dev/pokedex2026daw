@@ -24,6 +24,35 @@ body {
   font-size: 0.75rem;
 }
 
+#loading-page {
+  position: fixed;
+  inset: 0; /* lo mismo que top: 0; left: 0; bottom: 0; right: 0; */
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--panel-red);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#loading-page div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#loading-page h1 {
+  font-size: 5rem;
+  font-weight: bold;
+}
+
+#loading-page p {
+  font-size: 1.5rem;
+  margin: 15px 0;
+}
+
 .btn:active {
   transform: scale(0.9);
   transition: 0.1s;
@@ -677,6 +706,10 @@ body {
   font-size: 0.46rem;
 } */
 
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
 @keyframes lightenEffect {
   0% {
     color: var(--green);
@@ -686,5 +719,14 @@ body {
   }
   100% {
     color: #cfe2ff;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
