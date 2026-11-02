@@ -82,22 +82,10 @@ async function getPokemonAbility(pokemonId, abilityName) {
   return {};
 }
 
-// async function getPokemonDescription(pokemonId) {
-//   let pokemonResponse = await fetch(`${fullEndpoint.description}${pokemonId}`);
-//   if (pokemonResponse.ok) {
-//     let data = await pokemonResponse.json();
-//     for (const description of data.flavor_text_entries) {
-//       if (description.language.name === 'es') {
-//         return description.flavor_text;
-//       }
-//     }
-//   }
-// }
-
 async function getPokemonSpecie(pokemonId) {
   let pokemonResponse = await fetch(`${fullEndpoint.specie}${pokemonId}`);
+  let returnData = [];
   if (pokemonResponse.ok) {
-    let returnData = [];
     let data = await pokemonResponse.json();
     for (const description of data.flavor_text_entries) {
       if (description.language.name === 'es') {
@@ -113,6 +101,7 @@ async function getPokemonSpecie(pokemonId) {
     }
     return returnData;
   }
+  return returnData;
 }
 
 export { getAllPokemons, getPokemonById, getPokemonsAbility, getPokemonType, getPokemonTypes, getPokemonAbility, getPokemonSpecie };

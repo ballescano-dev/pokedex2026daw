@@ -562,6 +562,8 @@ body {
 #pokedex-entry #pokemon-description {
   font-size: 0.8rem;
   font-style: italic;
+  display: flex;
+  align-items: center;
 }
 
 #pokedex-entry div .entry-heading {
