@@ -5,9 +5,9 @@ const img_src_base = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/s
 window.addEventListener('load', async () => {
   fillButtonTypes();
   fillNumberKeyboard();
+  showCurrentPokemon(1);
   const pokemon_list = await pokeapi.getAllPokemons();
   fillPokemonGrid(pokemon_list);
-  showCurrentPokemon(1);
 
   // FORM + INPUT_SEARCH
   const input_search = document.getElementById('pokemon-search');
@@ -22,14 +22,15 @@ window.addEventListener('load', async () => {
   };
   form.onsubmit = async ($event) => {
     $event.preventDefault();
+    const parameter = input_search.value ? input_search.value : 1;
+    const pokemon = await pokeapi.getPokemonById(parameter);
+    showCurrentPokemon(pokemon.id);
+    result_search_container.classList.add('d-none');
+    result_search_container.innerHTML = '';
     input_search.value = '';
-    const pokemon = await pokeapi.getPokemonById(input_search.value);
-    showCurrentPokemon(pokemon);
+    input_search.blur(); //quitar el foco del input
   };
   input_search.addEventListener('input', () => { fillResultSearchContainer(input_search, result_search_container, pokemon_list) });
-  for (const result of result_search_container.children) {
-    result.addEventListener('click', () => { showCurrentPokemon($event) });
-  }
   
   // NUMBER KEYBOARD
   const numbers_btn_container = document.getElementById('number-keyboard');
@@ -44,9 +45,10 @@ window.addEventListener('load', async () => {
     input_search.value = '';
   };
   send_btn.onclick = async () => {
+    const parameter = input_search.value ? input_search.value : 1;
+    const pokemon = await pokeapi.getPokemonById(parameter);
+    showCurrentPokemon(pokemon.id);
     input_search.value = '';
-    const pokemon = await pokeapi.getPokemonById(input_search.value);
-    showCurrentPokemon(pokemon);
   };
 });
 
@@ -82,6 +84,13 @@ function fillResultSearchContainer(input, result_container, pokemon_list) {
       }
       
       result_item.append(span_pokemon_id, span_pokemon_name, span_pokemon_type);
+      result_item.addEventListener('click', () => {
+        showCurrentPokemon(pokemon.id);
+        result_container.classList.add('d-none');
+        result_container.innerHTML = '';
+        input.value = '';
+        input.blur();
+      });
       result_container.append(result_item);
     }
   }
@@ -121,20 +130,9 @@ async function fillButtonTypes() {
   }
 }
 
-async function showCurrentPokemon(pokemon_id=null) {
-  const pokemon_rows = document.getElementsByClassName('pokemon-list-item');
-  let current_pokemon = await pokeapi.getPokemonById(pokemon_id);
-
-  if (pokemon_id !== null) {
-    fillPokemonDisplay(current_pokemon);
-    return;
-  }
-
-  for (const div of pokemon_rows) {
-    div.onclick = () => {
-      fillPokemonDisplay(current_pokemon);
-    }
-  }
+async function showCurrentPokemon(pokemon_id) {
+  const current_pokemon = await pokeapi.getPokemonById(pokemon_id);
+  fillPokemonDisplay(current_pokemon);
 }
 
 function fillPokemonDisplay(pokemon) {
@@ -157,6 +155,7 @@ function fillPokemonDisplay(pokemon) {
 
   // TYPE(S)
   const badges_container = document.getElementById('badge-type-container');
+  badges_container.innerHTML = '';
   for (const type of pokemon.types) {
     const badge_type = document.createElement('span');
     if (type.type.name === 'grass' | type.type.name === 'fire' | type.type.name === 'water' | type.type.name === 'electric' | type.type.name === 'psychic' | type.type.name === 'poison') {
@@ -192,6 +191,13 @@ function fillPokemonGrid(pokemon_list) {
     const div = document.createElement('div');
     div.classList.add('col', 'pokemon-list-item');
     div.setAttribute('tabindex', '0');
+    div.addEventListener('click', () => showCurrentPokemon(pokemon.id));
+    div.addEventListener('keydown', ($event) => {
+      if ($event.key === 'Enter') {
+        $event.preventDefault();
+        showCurrentPokemon(pokemon.id);
+      }
+    });
 
     const img = document.createElement('img');
     img.src = `${img_src_base}${pokemon.id}.png`;
