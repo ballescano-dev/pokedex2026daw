@@ -11,8 +11,6 @@ window.addEventListener('load', async () => {
 
   // FORM + INPUT_SEARCH
   const input_search = document.getElementById('pokemon-search');
-  input_search.removeAttribute('disabled');
-  input_search.style.cursor = 'text';
   const result_search_container = document.getElementById('result-search-container');
   const form = document.getElementsByTagName('form')[0];
   
@@ -90,6 +88,15 @@ function fillResultSearchContainer(input, result_container, pokemon_list) {
         result_container.innerHTML = '';
         input.value = '';
         input.blur();
+      });
+      result_item.addEventListener('keydown', ($event) => {
+        if ($event.key === 'Enter') {
+          showCurrentPokemon(pokemon.id);
+          result_container.classList.add('d-none');
+          result_container.innerHTML = '';
+          input.value = '';
+          input.blur();
+        }
       });
       result_container.append(result_item);
     }
@@ -181,9 +188,24 @@ function fillPokemonDisplay(pokemon) {
       }
     }
   }
+
+  // SELECT ITEM LIST
+  for (const item of document.getElementsByClassName('pokemon-list-item')) {
+    item.classList.remove('active');
+    const itemId = Number(item.children[1].innerHTML.substring(1));
+    if (itemId === pokemon.id) {
+      item.classList.add('active');
+      item.scrollIntoView({ //mover el grid hasta el pokemon
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  }
 }
 
-function fillPokemonGrid(pokemon_list) {
+// TODO: FILTRAR POR EL TIPO DE POKEMON. SI ES NULL, TODOS; SI NO, SOLO LOS POKEMON QUE COINCIDAN CON EL TIPO
+// LO MISMO HAY QUE HACER UNA FUNCIÓN NUEVA EN API.JS O DIRECTAMENTE CREAR UNA LISTA DE OBJETOS Y FILTRAR DE LOS 1351 
+function fillPokemonGrid(pokemon_list, type=null) {
   const grid = document.getElementById('catalog-grid');
   const total_pokemon_number = document.getElementById('total-pokemon-number');
   total_pokemon_number.innerHTML = pokemon_list.length;
@@ -225,10 +247,7 @@ function fillPokemonGrid(pokemon_list) {
       pokemon_types_div.append(pokemon_types_added_span);
     }
 
-    div.append(img);
-    div.append(pokemon_id_span);
-    div.append(pokemon_name_span);
-    div.append(pokemon_types_div);
+    div.append(img, pokemon_id_span, pokemon_name_span, pokemon_types_div);
     grid.append(div);
   }
 }
